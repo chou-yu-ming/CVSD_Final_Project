@@ -2,7 +2,7 @@ module Adder (
     input [254:0] x,
     input [254:0] y,
     input add,
-    output [254:0] result
+    output reg [254:0] result
 );
 
 localparam q = `TWO_POW_255 - 255'd19;
@@ -22,5 +22,19 @@ always @(*) begin
         else result          = opr_temp_result + q;
     end
 end
+
+// // simplified adder
+// always @(*) begin
+//     yq = y - q;
+
+//     if (add) begin
+//         yy = (x < -yq) ? y: yq;
+//     end else begin
+//         yy = (x >= y) ? -y: -yq;
+//     end
+
+//     result = x + yy;
+
+// end
 
 endmodule
